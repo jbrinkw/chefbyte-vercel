@@ -17,17 +17,29 @@ export default function Login() {
     const demoPass = 'DemoPassword123!';
 
     try {
-      // 1. Try Login
-      const { error } = await signIn(demoEmail, demoPass);
+      // 1. Try Login first
+      const { error: loginError } = await signIn(demoEmail, demoPass);
 
-      // 2. If login fails, Try Signup
-      if (error) {
-        console.log('Demo login failed, trying signup...');
-        const res = await signUp(demoEmail, demoPass);
-        if (res.error) throw res.error;
+      // 2. If login fails, check why
+      if (loginError) {
+        console.log('Demo login failed:', loginError.message);
+        
+        // Only try signup if user doesn't exist
+        if (loginError.message.includes('Invalid login credentials')) {
+          console.log('User may not exist, trying signup...');
+          const res = await signUp(demoEmail, demoPass);
+          if (res.error) {
+            console.error('Signup also failed:', res.error.message);
+            throw new Error(`Login failed: ${loginError.message}. Signup failed: ${res.error.message}`);
+          }
 
-        const loginRes = await signIn(demoEmail, demoPass);
-        if (loginRes.error) throw loginRes.error;
+          // Try login again after signup
+          const loginRes = await signIn(demoEmail, demoPass);
+          if (loginRes.error) throw loginRes.error;
+        } else {
+          // Some other login error (not "invalid credentials")
+          throw loginError;
+        }
       }
 
       // 3. Reset Data
