@@ -13,7 +13,7 @@ export default function Login() {
   const handleDemo = async () => {
     setError(null);
     setLoading(true);
-    const demoEmail = 'demo@chefbyte-app.com';
+    const demoEmail = 'chefbyte.demo@gmail.com';
     const demoPass = 'DemoPassword123!';
 
     try {
