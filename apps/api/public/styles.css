@@ -1,0 +1,2183 @@
+:root {
+  --accent: #d33;
+  --accent-dark: #a11;
+  --bg: #f7f7f9;
+  --key: #fff;
+  --key-border: #ddd;
+  --key-hover: #f0f0f0;
+  --active: #1e66f5;
+}
+
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  padding: 16px;
+  background: #fff;
+  color: #111;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#root {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 8px 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.status {
+  margin: 8px 0 12px;
+  color: #444;
+  min-height: 20px;
+}
+
+.headerBar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.headerBar .rightActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.headerBar .actionBtn {
+  padding: 16px 20px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.headerBar .actionBtn:hover {
+  background: #f5f5f5;
+}
+
+.mealPlanToggle[data-enabled="false"] {
+  background: #d33;
+  color: #fff;
+  border-color: #a11;
+}
+
+.mealPlanToggle[data-enabled="false"]:hover {
+  background: #a11;
+}
+
+.mealPlanToggle[data-enabled="true"] {
+  background: #2f9e44;
+  color: #fff;
+  border-color: #2b8a3e;
+}
+
+.mealPlanToggle[data-enabled="true"]:hover {
+  background: #2b8a3e;
+}
+
+.modeButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.modeBtn {
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+  font-size: 16px;
+}
+
+.modeBtn.active {
+  background: #222;
+  color: #fff;
+  border-color: #222;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 1.5fr 2.5fr;
+  gap: 16px;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: auto;
+}
+
+.panel {
+  background: var(--bg);
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 12px;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.queuePanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.queueHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.logHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 6px 0 8px;
+}
+
+.logFilterButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.queueHeader input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.queueList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  max-height: none;
+}
+
+.queueItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 4px 8px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.queueItem.red {
+  border-color: var(--accent);
+  background: #ffe9e9;
+}
+
+.queueItem.active {
+  outline: 2px solid var(--active);
+}
+
+.queueItem .name {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 600;
+}
+
+.queueItem .details {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 12px;
+  color: #666;
+}
+
+.queueItem .right {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  font-variant-numeric: tabular-nums;
+}
+
+.keypadPanel {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 10px;
+  min-height: 0;
+  height: 100%;
+}
+
+.keypadPanel .modeButtons {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.keypadPanel .modeButtons .modeBtn {
+  flex: 1 1 0;
+}
+
+.keypadPanel .activeBar,
+.keypadPanel .screen,
+.keypadPanel .nutritionEditorForm,
+.keypadPanel .keysGrid,
+.keypadPanel .completeBtn {
+  grid-column: 2;
+}
+
+.activeBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.activeName {
+  font-size: 24px;
+  font-weight: 800;
+  padding: 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modeBtn.small {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.screen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.screen input {
+  flex: 1;
+  font-size: 42px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: right;
+}
+
+.screen .units {
+  font-size: 16px;
+  color: #666;
+}
+
+.keysGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 0.5fr;
+  grid-auto-rows: minmax(80px, 1fr);
+  gap: 10px;
+}
+
+.key {
+  background: var(--key);
+  border: 1px solid var(--key-border);
+  border-radius: 10px;
+  font-size: 28px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key.op {
+  background: #fef3f3;
+  border-color: #f2d1d1;
+}
+
+.key.op:hover {
+  background: #fde7e7;
+}
+
+.key.unitToggle {
+  grid-column: 4;
+  grid-row: 1 / span 4;
+  background: #e3f2fd;
+  border-color: #90caf9;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+  line-height: 1.3;
+}
+
+.key.unitToggle:not(:disabled):hover {
+  background: #bbdefb;
+}
+
+.key.unitToggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+/* specific key slots are styled by position; no extra styles needed */
+
+/* Badge styling */
+.badge {
+  background: #2f9e44;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.badge.new {
+  background: #1e88e5;
+}
+
+.badge.mp {
+  background: #2f9e44;
+}
+
+/* Hidden debug areas */
+#logs,
+#modlogs {
+  display: none;
+}
+
+.completeBtn {
+  margin-top: 4px;
+  padding: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: #2f9e44;
+  border: 1px solid #2b8a3e;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.completeBtn:hover {
+  background: #2b8a3e;
+}
+
+/* Grocy Home Styles */
+.grocyHomeView {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.currentDayCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.dayHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.macroGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.macroBox {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.macroBox label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.macroBox span {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+}
+
+.macroBox small {
+  display: block;
+  margin-top: 2px;
+}
+
+.statusRow {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #555;
+}
+
+.statusRow strong {
+  color: #111;
+}
+
+.tempItemsSection {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.tempItemsSection h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tempItemForm {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tempItemForm input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.tempItemForm button {
+  padding: 8px 16px;
+  background: #2f9e44;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tempItemForm button:hover {
+  background: #2b8a3e;
+}
+
+.tempItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tempItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+.tempItem .info {
+  flex: 1;
+}
+
+.tempItem .name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.tempItem .macros {
+  font-size: 13px;
+  color: #666;
+}
+
+.tempItem button {
+  padding: 4px 12px;
+  background: #d33;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.tempItem button:hover {
+  background: #a11;
+}
+
+/* LiquidTrack Styles */
+.liquidTrackSection {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.liquidTrackSection h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.liquidTrackSection .sectionSubtitle {
+  font-size: 13px;
+  color: #666;
+  margin: -8px 0 12px 0;
+}
+
+.scalesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scaleCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scaleCard:hover {
+  background: #e8f4fd;
+  border-color: #1e66f5;
+}
+
+.scaleInfo {
+  flex: 1;
+}
+
+.scaleInfo .scaleName {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.scaleInfo .scaleStats {
+  font-size: 13px;
+  color: #666;
+}
+
+.scaleActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.scaleActions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.scaleActions .viewBtn {
+  background: #1e66f5;
+  color: #fff;
+}
+
+.scaleActions .viewBtn:hover {
+  background: #1557d6;
+}
+
+.scaleActions .manageBtn {
+  background: #666;
+  color: #fff;
+}
+
+.scaleActions .manageBtn:hover {
+  background: #555;
+}
+
+.noScalesMessage {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* LiquidTrack Modal Styles */
+.liquidModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.liquidModal.show {
+  display: flex;
+}
+
+.liquidModalContent {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.liquidModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 12px;
+}
+
+.liquidModalHeader h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.liquidModalHeader .closeBtn {
+  background: #d33;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.liquidModalHeader .closeBtn:hover {
+  background: #a11;
+}
+
+.dayEventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.eventCard {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eventCard.refill {
+  background: #e8f5e9;
+  border-color: #c8e6c9;
+}
+
+.eventInfo {
+  flex: 1;
+}
+
+.eventInfo .eventProduct {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.eventInfo .eventDetails {
+  font-size: 13px;
+  color: #666;
+}
+
+.eventActions button {
+  padding: 6px 12px;
+  background: #d33;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.eventActions button:hover {
+  background: #a11;
+}
+
+.manualEventForm {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.manualEventForm h4 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.manualEventForm .formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.manualEventForm label {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.manualEventForm input,
+.manualEventForm select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.manualEventForm .fullWidth {
+  grid-column: 1 / -1;
+}
+
+.manualEventForm button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: #2f9e44;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+.manualEventForm button:hover {
+  background: #2b8a3e;
+}
+
+.scaleManagementGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.scaleManagementCard {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.scaleManagementCard .scaleHeader {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.scaleManagementCard .scaleDetails {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.scaleManagementCard button {
+  padding: 6px 12px;
+  background: #d33;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.scaleManagementCard button:hover {
+  background: #a11;
+}
+
+.plannedRecipesSection {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.plannedRecipesSection h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.plannedRecipesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plannedRecipeCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background: #f7f7f9;
+}
+
+.plannedRecipeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.plannedRecipeInfo strong {
+  font-size: 15px;
+}
+
+.plannedRecipeMeta {
+  font-size: 13px;
+  color: #555;
+}
+
+.plannedRecipeActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.plannedRecipeActions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.plannedRecipeActions button.execute {
+  background: #1e66f5;
+  color: #fff;
+}
+
+.plannedRecipeActions button.undo {
+  background: #d33;
+  color: #fff;
+}
+
+.plannedRecipeActions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toggle slider for meal prep */
+.mealPrepToggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.mealPrepToggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.mealPrepToggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.mealPrepToggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.mealPrepToggle input:checked+.slider {
+  background-color: #1e66f5;
+}
+
+.mealPrepToggle input:checked+.slider:before {
+  transform: translateX(20px);
+}
+
+.mealPrepLabel {
+  font-size: 12px;
+  color: #666;
+  margin-left: 8px;
+}
+
+.shoppingLinksBtn {
+  padding: 12px 20px;
+  background: #1e66f5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.shoppingLinksBtn:hover {
+  background: #1557d6;
+}
+
+.shoppingLinksBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#btnOpenMissingWalmart:hover {
+  background: #cc6600 !important;
+}
+
+.recentDaysSection {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.recentDaysSection h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.dayCard {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.dayCard:hover {
+  background: #f0f0f0;
+}
+
+.dayCard .dayCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.dayCard .dayCardExpanded {
+  margin-top: 12px;
+  display: none;
+}
+
+.dayCard.expanded .dayCardExpanded {
+  display: block;
+}
+
+.entryItem {
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.entryItem .entryName {
+  font-weight: 600;
+}
+
+.entryItem .entryMacros {
+  font-size: 13px;
+  color: #666;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background: #f5f5f5;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Walmart Manager Styles */
+.walmartManagerView {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  padding: 8px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.managerCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.managerCard h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+}
+
+.counterRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f7f7f9;
+  border-radius: 6px;
+}
+
+.counterRow span {
+  font-size: 15px;
+  color: #444;
+}
+
+.counterRow strong {
+  font-size: 18px;
+  color: #1e66f5;
+}
+
+.managerBtn {
+  padding: 10px 20px;
+  background: #1e66f5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.managerBtn:hover {
+  background: #1557d6;
+}
+
+.managerBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #999;
+}
+
+.completeManagerBtn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  background: #2f9e44;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.completeManagerBtn:hover {
+  background: #2b8a3e;
+}
+
+.completeManagerBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #999;
+}
+
+.productOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.productCard {
+  background: #f7f7f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.productCard .productName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.productCard .productName .searchLink {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1e66f5;
+  text-decoration: none;
+}
+
+.productCard .productName .searchLink:hover {
+  text-decoration: underline;
+}
+
+.productCard .notWalmartCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #666;
+  font-weight: 400;
+}
+
+.productCard .notWalmartCheckbox input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.productCard .notWalmartCheckbox label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.productCard .loadingText {
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+  text-align: center;
+}
+
+.productCard .locationWarning {
+  color: #d33;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  background: #ffe9e9;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.productCard .customLinkBox {
+  margin-top: 12px;
+}
+
+.productCard .customLinkBox label {
+  display: block;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.productCard .customLinkBox input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.productCard .customLinkBox input:focus {
+  outline: none;
+  border-color: #1e66f5;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.optionCard {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.optionCard:hover {
+  border-color: #1e66f5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.optionCard.selected {
+  border-color: #2f9e44;
+  background: #f0fdf4;
+}
+
+.optionCard .optionImage {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.optionCard .optionName {
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.3;
+  min-height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.optionCard .optionPrice {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e66f5;
+  text-decoration: none;
+  display: block;
+}
+
+.optionCard .optionPrice:hover {
+  text-decoration: underline;
+}
+
+.optionCard .radioCircle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.optionCard.selected .radioCircle {
+  border-color: #2f9e44;
+  background: #2f9e44;
+}
+
+.optionCard.selected .radioCircle::after {
+  content: '✓';
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.priceUpdateProgress {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f7f7f9;
+  border-radius: 6px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 24px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #1e66f5, #2f9e44);
+  transition: width 0.3s ease;
+  border-radius: 12px;
+}
+
+.progressText {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.progressText strong {
+  color: #1e66f5;
+  font-size: 18px;
+}
+
+.errorList {
+  margin-top: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.errorItem {
+  padding: 8px 12px;
+  background: #ffe9e9;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #c00;
+}
+
+/* Recipe Browser Styles */
+.recipesView {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.filtersCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.filtersCard h3 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.filterRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filterRow label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.sliderControl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sliderControl input[type="range"] {
+  flex: 1;
+}
+
+.sliderControl .sliderValue {
+  min-width: 60px;
+  text-align: right;
+  font-size: 14px;
+  color: #666;
+}
+
+.recipesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.recipeCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.recipeCard:hover {
+  border-color: #1e66f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipeCard .recipeName {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.recipeCard .recipeDescription {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.recipeCard .recipeMacros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.recipeCard .macroItem {
+  text-align: center;
+  font-size: 12px;
+}
+
+.recipeCard .macroItem .value {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e66f5;
+}
+
+.recipeCard .recipeTime {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 8px;
+}
+
+/* Nutrition Editor Styles */
+.nutritionEditorForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nutritionGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+
+.nutritionField {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.nutritionField label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.nutritionField input {
+  height: 46px;
+  padding: 0 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 24px;
+  transition: border-color 0.2s;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 44px;
+}
+
+.nutritionField input:focus {
+  outline: none;
+  border-color: #1e66f5;
+}
+
+.nutritionField.focused input {
+  border-color: #1e66f5;
+  background: #f0f8ff;
+}
+
+.nutritionField input[readonly] {
+  background: #f5f5f5;
+  color: #666;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.modalBody textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.modalBody textarea:focus {
+  outline: none;
+  border-color: #1e66f5;
+}
+
+.modalFooter {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.modalBtn {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.modalBtn.primary {
+  background: #2f9e44;
+  color: #fff;
+  border-color: #2b8a3e;
+}
+
+.modalBtn.primary:hover {
+  background: #2b8a3e;
+}
+
+.modalBtn.secondary {
+  background: #fff;
+  color: #333;
+}
+
+.modalBtn.secondary:hover {
+  background: #f5f5f5;
+}
+
+/* ============================== */
+/* Recipe Management Styles       */
+/* ============================== */
+
+/* Recipes List Page */
+.recipesPage {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.recipesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.recipesHeader h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.recipesHeader .headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.recipesHeader .actionBtn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.recipesHeader .finderBtn {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.recipesHeader .finderBtn:hover {
+  background: #e0e0e0;
+}
+
+.recipesHeader .createBtn {
+  background: #2f9e44;
+  color: #fff;
+}
+
+.recipesHeader .createBtn:hover {
+  background: #2b8a3e;
+}
+
+.recipesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recipesList .emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f7f7f9;
+  border-radius: 12px;
+  color: #666;
+}
+
+.recipeListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+
+.recipeListItem:hover {
+  border-color: #1e66f5;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.recipeListItem .recipeInfo {
+  flex: 1;
+}
+
+.recipeListItem .recipeName {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.recipeListItem .recipeDescription {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+.recipeListItem .recipeMeta {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #888;
+}
+
+.recipeListItem .recipeMacros {
+  display: flex;
+  gap: 16px;
+}
+
+.recipeListItem .recipeMacros .macroItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.recipeListItem .recipeMacros .macroItem .value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e66f5;
+}
+
+.recipeListItem .recipeMacros .macroItem .label {
+  font-size: 11px;
+  color: #888;
+}
+
+/* Recipe Create/Edit Page */
+.recipeCreatePage,
+.recipeEditPage {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.recipeCreateHeader,
+.recipeEditHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #eee;
+}
+
+.recipeCreateHeader h1,
+.recipeEditHeader h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.recipeCreateHeader .headerActions,
+.recipeEditHeader .headerActions {
+  display: flex;
+  gap: 12px;
+}
+
+.cancelBtn {
+  padding: 10px 20px;
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancelBtn:hover {
+  background: #e0e0e0;
+}
+
+.saveBtn {
+  padding: 10px 20px;
+  background: #2f9e44;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.saveBtn:hover {
+  background: #2b8a3e;
+}
+
+.saveBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.deleteBtn {
+  padding: 10px 20px;
+  background: #d33;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.deleteBtn:hover {
+  background: #a11;
+}
+
+.errorMessage {
+  background: #ffe9e9;
+  border: 1px solid #ffcccc;
+  color: #c00;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.recipeSection {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.recipeSection h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup.full {
+  grid-column: 1 / -1;
+}
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: #1e66f5;
+}
+
+/* Calculated Macros Display */
+.calculatedMacros {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.calculatedMacros h3 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.macrosDisplay {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.macrosDisplay .macroBox {
+  background: #f7f7f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.macrosDisplay .macroBox .value {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e66f5;
+}
+
+.macrosDisplay .macroBox .label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Add Ingredient Form */
+.addIngredientForm {
+  background: #f7f7f9;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.ingredientInputRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.productSearchContainer {
+  position: relative;
+  flex: 2;
+}
+
+.productSearchInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.productSearchInput:focus {
+  outline: none;
+  border-color: #1e66f5;
+}
+
+.productDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.productOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.productOption:last-child {
+  border-bottom: none;
+}
+
+.productOption:hover {
+  background: #f0f8ff;
+}
+
+.productOption .productName {
+  font-weight: 500;
+}
+
+.productOption .productCals {
+  font-size: 13px;
+  color: #888;
+}
+
+.amountInput {
+  width: 80px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.unitSelect {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.noteInput {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.addIngredientBtn {
+  padding: 10px 20px;
+  background: #1e66f5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.addIngredientBtn:hover {
+  background: #1557d6;
+}
+
+.addIngredientBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ingredients List */
+.ingredientsList {
+  min-height: 100px;
+}
+
+.noIngredients {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.ingredientsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ingredientsTable th {
+  text-align: left;
+  padding: 12px;
+  background: #f7f7f9;
+  border-bottom: 2px solid #ddd;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.ingredientsTable td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.removeIngredientBtn {
+  width: 28px;
+  height: 28px;
+  background: #ffeeee;
+  color: #d33;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.removeIngredientBtn:hover {
+  background: #d33;
+  color: #fff;
+}
+
+/* Instructions Textarea */
+.instructionsTextarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.6;
+  resize: vertical;
+}

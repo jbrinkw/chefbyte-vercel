@@ -1,0 +1,19 @@
+{
+    "name": "chefbyte-monorepo",
+    "private": true,
+    "workspaces": [
+        "apps/*"
+    ],
+    "scripts": {
+        "build": "npm run build --workspaces",
+        "dev": "npm run dev --workspaces",
+        "test": "npm run test:unit && npm run test:e2e",
+        "test:unit": "npm run test:unit --workspace=apps/web",
+        "test:e2e": "npx playwright test",
+        "test:e2e:ui": "npx playwright test --ui"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.57.0",
+        "supabase": "^2.65.6"
+    }
+}

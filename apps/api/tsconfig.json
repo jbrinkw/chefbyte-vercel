@@ -1,0 +1,52 @@
+{
+    "compilerOptions": {
+        // Target modern JavaScript
+        "target": "ES2022",
+        "lib": [
+            "ES2022"
+        ],
+        "module": "commonjs",
+        // Output configuration
+        "outDir": "./dist",
+        "rootDir": "./",
+        "sourceMap": true,
+        // Module resolution
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
+        // Type checking - strict mode
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        // Additional checks
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        // Compatibility
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        // Incremental compilation
+        "incremental": true,
+        // Allow JavaScript files
+        "allowJs": true,
+        "checkJs": false
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.js"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "public",
+        "tests/**/*.test.ts"
+    ]
+}

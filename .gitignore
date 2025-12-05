@@ -1,0 +1,85 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Node - use ** to catch nested node_modules
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+package-lock.json
+
+# Build outputs
+**/dist/
+
+# Vercel
+.vercel/
+
+# Playwright
+.playwright-mcp/
+test-results/
+playwright-report/
+screenshots/
+
+# Test outputs
+test_output*.txt
+seed_output.txt
+env_debug.txt
+error.txt
+
+# Debug/test scripts at root
+debug-*.js
+test-*.js
+seed-*.js
+
+# Runtime data
+data.json
+*.json.bak
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+*.egg-info/
+venv/
+.venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Project specific
+config.local.json
+backups/
+ui/data/*.json
+ui/debug_*.js
+ui/pnpm-lock.yaml
+
+.playwright-mcp
+legacy

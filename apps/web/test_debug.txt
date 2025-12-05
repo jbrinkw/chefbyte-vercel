@@ -1,0 +1,15 @@
+﻿
+[1m[46m RUN [49m[22m [36mv4.0.14 [39m[90mC:/Users/jeremy/Documents/chefbyte/chefbyte-standalone/apps/web[39m
+
+[90mstdout[2m | src/__tests__/homeButtonsIntegration.test.ts[2m > [22m[2mHome Page Buttons Integration
+[22m[39mVITE_SUPABASE_URL: http://192.168.0.226:54321
+VITE_SUPABASE_ANON_KEY: Set
+
+ [31mΓ¥»[39m src/__tests__/homeButtonsIntegration.test.ts [2m([22m[2m1 test[22m[2m | [22m[33m1 skipped[39m[2m)[22m[32m 12[2mms[22m[39m
+     [2m[90mΓåô[39m[22m Full Flow: Create Data -> Sync Cart -> Get Links -> Import
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [33m1 skipped[39m[90m (1)[39m
+[2m   Start at [22m 12:11:31
+[2m   Duration [22m 2.87s[2m (transform 245ms, setup 307ms, import 195ms, tests 12ms, environment 1.91s)[22m
+
