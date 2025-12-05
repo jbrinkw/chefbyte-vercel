@@ -20,6 +20,12 @@ body {
   flex-direction: column;
 }
 
+/* Ensure all inputs default to light mode */
+input, textarea, select {
+  background: #fff;
+  color: #111;
+}
+
 #root {
   flex: 1 1 auto;
   min-height: 0;
@@ -1950,6 +1956,8 @@ h1 {
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
+  background: #fff;
+  color: #111;
 }
 
 .formGroup input:focus,
@@ -2239,6 +2247,8 @@ h1 {
   border-radius: 6px;
   font-size: 16px;
   box-sizing: border-box;
+  background: #fff;
+  color: #111;
 }
 
 .authCard input:focus {

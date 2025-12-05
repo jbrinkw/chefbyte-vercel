@@ -46,18 +46,19 @@ export default function Settings() {
                         style={{
                             padding: '10px 20px',
                             background: activeTab === tab.id 
-                                ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)' 
+                                ? '#fff' 
                                 : 'transparent',
                             border: 'none',
                             borderRadius: '8px',
                             cursor: 'pointer',
                             fontWeight: 600,
                             fontSize: '14px',
-                            color: activeTab === tab.id ? '#fff' : '#555',
+                            color: activeTab === tab.id ? '#1f2937' : '#6b7280',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '8px',
+                            boxShadow: activeTab === tab.id ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
                         }}
                     >
                         <span>{tab.icon}</span>
