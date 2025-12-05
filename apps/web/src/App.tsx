@@ -108,6 +108,23 @@ function AppContent() {
                         ⚙️ Settings
                     </Link>
 
+                    <a
+                        href="https://docs.chefbyte.app"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                            ...navLinkStyle,
+                            color: '#2563eb',
+                            border: '1px solid #dbeafe',
+                            background: '#eff6ff',
+                            padding: '8px 12px',
+                        }}
+                        onMouseOver={(e) => { e.currentTarget.style.background = '#e0ecff'; }}
+                        onMouseOut={(e) => { e.currentTarget.style.background = '#eff6ff'; }}
+                    >
+                        📘 User Guide
+                    </a>
+
                     <div style={{ width: '1px', height: '24px', background: '#e5e7eb', margin: '0 8px' }} />
 
                     <button
