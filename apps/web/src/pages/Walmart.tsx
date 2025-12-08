@@ -398,12 +398,7 @@ export default function Walmart() {
 
                             {/* Options grid */}
                             {!product.loading && product.options.length > 0 && !product.notWalmart && (
-                                <div className="optionsGrid" style={{
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-                                    gap: '12px',
-                                    marginBottom: '12px'
-                                }}>
+                                <div className="optionsGrid" style={{ marginBottom: '12px' }}>
                                     {product.options.map((option, index) => (
                                         <div
                                             key={index}

@@ -214,7 +214,7 @@ export default function Home() {
                         background: '#fff',
                         padding: '24px',
                         borderRadius: '8px',
-                        width: '400px',
+                        width: 'min(480px, 92vw)',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
                     }}>
                         <h2 style={{ marginTop: 0 }}>Taste Profile</h2>
@@ -285,7 +285,7 @@ export default function Home() {
                         background: '#fff',
                         padding: '24px',
                         borderRadius: '8px',
-                        width: '400px',
+                        width: 'min(480px, 92vw)',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
                     }}>
                         <h2 style={{ marginTop: 0 }}>Target Macros</h2>
@@ -416,7 +416,7 @@ export default function Home() {
                         background: '#fff',
                         padding: '24px',
                         borderRadius: '8px',
-                        width: '400px',
+                        width: 'min(480px, 92vw)',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
                     }}>
                         <h2 style={{ marginTop: 0 }}>Add Liquid Log</h2>
@@ -531,7 +531,7 @@ export default function Home() {
                 </div>
 
                 {/* Status Row */}
-                <div className="statusRow">
+                <div className="statusRow" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     <span>Missing Walmart Links: <strong>{statsLoading ? '...' : (stats?.missingWalmartLinks ?? '-')}</strong></span>
                     <span>Missing Prices: <strong>{statsLoading ? '...' : (stats?.missingPrices ?? '-')}</strong></span>
                     <span>Placeholder Items: <strong>{statsLoading ? '...' : (stats?.placeholderItems ?? '-')}</strong></span>

@@ -218,7 +218,8 @@ export default function Products() {
             </div>
 
             <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <div className="table-responsive desktop-only">
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead>
                         <tr style={{ background: '#f7f7f9', borderBottom: '2px solid #ddd' }}>
                             <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
@@ -269,7 +270,46 @@ export default function Products() {
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                    </table>
+                </div>
+
+                <div className="mobile-only" style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {products.map((product: Product) => (
+                        <div key={product.id} className="card" style={{ padding: '12px', border: '1px solid #eee', borderRadius: '10px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
+                                <div>
+                                    <strong>{product.name}</strong>
+                                    {product.barcode && <div style={{ fontSize: '12px', color: '#666' }}>{product.barcode}</div>}
+                                    <div style={{ fontSize: '12px', color: '#666' }}>Min: {product.min_stock_amount}</div>
+                                    <div style={{ fontSize: '12px', color: '#666' }}>
+                                        {locations.find((l: any) => l.id === product.location_id)?.name || '-'}
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', gap: '6px' }}>
+                                    <button
+                                        onClick={() => handleEdit(product)}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px' }}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(product.id)}
+                                        className="primary-btn"
+                                        style={{
+                                            padding: '6px 10px',
+                                            background: deleteConfirmMap[product.id] ? '#dc3545' : '#fef2f2',
+                                            color: deleteConfirmMap[product.id] ? '#fff' : '#dc3545',
+                                            border: deleteConfirmMap[product.id] ? 'none' : '1px solid #dc3545'
+                                        }}
+                                    >
+                                        {deleteConfirmMap[product.id] ? 'Confirm?' : 'Delete'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Edit/Create Modal */}
@@ -287,7 +327,7 @@ export default function Products() {
                         background: '#fff',
                         padding: '24px',
                         borderRadius: '8px',
-                        width: '800px',
+                        width: 'min(720px, 96vw)',
                         maxWidth: '95%',
                         maxHeight: '90vh',
                         overflowY: 'auto'

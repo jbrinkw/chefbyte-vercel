@@ -29,6 +29,18 @@ export default function Settings() {
                 </p>
             </div>
 
+            <div className="mobile-only" style={{ marginBottom: '12px' }}>
+                <select
+                    value={activeTab}
+                    onChange={(e) => setActiveTab(e.target.value as Tab)}
+                    style={{ padding: '10px', width: '100%', borderRadius: '8px', border: '1px solid #ddd' }}
+                >
+                    {tabs.map(tab => (
+                        <option key={tab.id} value={tab.id}>{tab.icon} {tab.label}</option>
+                    ))}
+                </select>
+            </div>
+
             {/* Modern Tabs */}
             <div style={{
                 display: 'flex',

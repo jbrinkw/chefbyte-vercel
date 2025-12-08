@@ -49,7 +49,8 @@ export default function Inventory() {
             <h1 style={{ marginBottom: '20px' }}>Inventory</h1>
 
             <div style={{ background: '#fff', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <div className="table-responsive desktop-only">
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead>
                         <tr style={{ background: '#f7f7f9', borderBottom: '2px solid #ddd' }}>
                             <th style={{ padding: '12px', textAlign: 'left', fontWeight: 600 }}>Product</th>
@@ -172,7 +173,86 @@ export default function Inventory() {
                             </tr>
                         )}
                     </tbody>
-                </table>
+                    </table>
+                </div>
+
+                <div className="mobile-only" style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {items && items.length > 0 ? items.map((item: any) => {
+                        const servingsPerContainer = item.num_servings || 1;
+                        const servingSize = 1 / servingsPerContainer;
+                        return (
+                            <div key={item.id} className="card" style={{ padding: '12px', borderRadius: '10px', border: '1px solid #eee' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', alignItems: 'flex-start' }}>
+                                    <div>
+                                        <strong>{item.name}</strong>
+                                        {item.barcode && <div style={{ fontSize: '12px', color: '#666' }}>{item.barcode}</div>}
+                                        <div style={{ fontSize: '11px', color: '#888' }}>{servingsPerContainer} servings/container</div>
+                                        <div style={{ fontSize: '12px', color: '#666' }}>{item.location_name || 'N/A'}</div>
+                                    </div>
+                                    <span style={{
+                                        background: getStockStatusColor(item.current_stock, item.min_stock || 0),
+                                        color: '#fff',
+                                        padding: '4px 10px',
+                                        borderRadius: '12px',
+                                        fontWeight: 600,
+                                        fontSize: '12px'
+                                    }}>
+                                        {Number(item.current_stock).toFixed(2)} {item.unit_name || 'units'}
+                                    </span>
+                                </div>
+
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '8px' }}>
+                                    <button
+                                        onClick={() => purchaseMutation.mutate({ product_id: item.id, amount: 1 })}
+                                        disabled={purchaseMutation.isPending}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px' }}
+                                    >
+                                        +1 Container
+                                    </button>
+                                    <button
+                                        onClick={() => consumeMutation.mutate({ product_id: item.id, amount: 1 })}
+                                        disabled={consumeMutation.isPending || Number(item.current_stock) < 1}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px', background: '#d33' }}
+                                    >
+                                        -1 Container
+                                    </button>
+                                    <button
+                                        onClick={() => purchaseMutation.mutate({ product_id: item.id, amount: servingSize })}
+                                        disabled={purchaseMutation.isPending}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px', background: '#4caf50' }}
+                                    >
+                                        +1 Serving
+                                    </button>
+                                    <button
+                                        onClick={() => consumeMutation.mutate({ product_id: item.id, amount: servingSize })}
+                                        disabled={consumeMutation.isPending || Number(item.current_stock) < servingSize}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px', background: '#f44336' }}
+                                    >
+                                        -1 Serving
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            if (window.confirm('Are you sure you want to consume ALL stock for this product?')) {
+                                                consumeAllMutation.mutate(item.id);
+                                            }
+                                        }}
+                                        disabled={consumeAllMutation.isPending || Number(item.current_stock) === 0}
+                                        className="primary-btn"
+                                        style={{ padding: '6px 10px', background: '#333' }}
+                                    >
+                                        Consume All
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    }) : (
+                        <div style={{ padding: '16px', textAlign: 'center', color: '#999' }}>No products in inventory</div>
+                    )}
+                </div>
             </div>
         </div>
     );

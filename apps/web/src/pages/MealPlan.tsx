@@ -245,10 +245,7 @@ export default function MealPlan() {
             )}
 
             {/* Week Grid */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(7, 1fr)',
-                gap: '12px',
+            <div className="week-grid" style={{
                 marginTop: '20px'
             }}>
                 {weekDays.map((day) => {

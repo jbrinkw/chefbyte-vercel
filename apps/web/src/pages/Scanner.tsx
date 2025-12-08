@@ -786,30 +786,19 @@ export default function Scanner() {
             </div>
 
             <div className="panel keypadPanel">
-                <button
-                    className="actionBtn mealPlanToggle"
-                    data-enabled={mealPlanEnabled}
-                    onClick={() => {
-                        const newState = !mealPlanEnabled;
-                        setMealPlanEnabled(newState);
-                        if (newState) setMode('consume');
-                    }}
-                    style={{
-                        marginBottom: '10px',
-                        background: mealPlanEnabled ? '#2f9e44' : '#d33',
-                        color: 'white',
-                        border: 'none',
-                        padding: '10px',
-                        borderRadius: '6px',
-                        cursor: 'pointer',
-                        fontWeight: 'bold'
-                    }}
-                    title={mealPlanEnabled ? "Enabled: Consuming adds to meal plan" : "Disabled: Consuming does not add to meal plan"}
-                >
-                    Consume: Add to Meal Plan
-                </button>
-
                 <div className="modeButtons">
+                    <button
+                        className="modeBtn mealPlanToggle"
+                        data-enabled={mealPlanEnabled}
+                        onClick={() => {
+                            const newState = !mealPlanEnabled;
+                            setMealPlanEnabled(newState);
+                            if (newState) setMode('consume');
+                        }}
+                        title={mealPlanEnabled ? "Enabled: Consuming adds to meal plan" : "Disabled: Consuming does not add to meal plan"}
+                    >
+                        Consume → Meal Plan
+                    </button>
                     <button
                         className={`modeBtn ${mode === 'purchase' ? 'active' : ''}`}
                         onClick={() => setMode('purchase')}
@@ -843,10 +832,9 @@ export default function Scanner() {
                         readOnly
                         className="screenInput"
                     />
-                    <div className="units">{unitMode}</div>
                 </div>
 
-                {showNutrition && (
+                {showNutrition && activeItemId && (
                     <div className="nutritionEditorForm">
                         <div className="nutritionGrid">
                             <div className="nutritionField">
