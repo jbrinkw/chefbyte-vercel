@@ -23,7 +23,8 @@ package-lock.json
 .playwright-mcp/
 test-results/
 playwright-report/
-screenshots/
+/screenshots/
+!/docs-site/docs/assets/screenshots/**
 
 # Test outputs
 test_output*.txt
