@@ -3,7 +3,7 @@
 The Recipes page is your cookbook with intelligent filtering by macro density and ingredient availability.
 
 <figure>
-  <img src="../../assets/screenshots/recipes.png" alt="Recipes Page" class="screenshot">
+  <img src="/assets/screenshots/recipes.png" alt="Recipes Page" class="screenshot">
   <figcaption class="screenshot-caption">Recipe browser with macro density filters</figcaption>
 </figure>
 
@@ -57,7 +57,7 @@ As you add ingredients:
 - Density percentiles update
 
 <figure>
-  <img src="../../assets/screenshots/recipe-edit.png" alt="Recipe Editor" class="screenshot">
+  <img src="/assets/screenshots/recipe-edit.png" alt="Recipe Editor" class="screenshot">
   <figcaption class="screenshot-caption">Recipe editor with ingredient list and macros</figcaption>
 </figure>
 
@@ -150,4 +150,5 @@ When you cook a recipe:
 | Meal Plan | Add recipes to calendar |
 | Macros | Recipe macros flow to tracking |
 | Shopping | Recipe ingredients added to shopping list |
+
 

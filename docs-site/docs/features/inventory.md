@@ -118,3 +118,4 @@ Find items quickly:
 - **Shopping**: Below-minimum items auto-populate shopping list
 - **Macros**: Consuming products can add to daily macro tracking
 
+

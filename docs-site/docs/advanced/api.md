@@ -333,3 +333,4 @@ type Product = Database['public']['Tables']['products']['Row'];
 type InsertProduct = Database['public']['Tables']['products']['Insert'];
 ```
 
+

@@ -3,7 +3,7 @@
 The Shopping page manages your grocery lists with Walmart price integration and inventory import.
 
 <figure>
-  <img src="../../assets/screenshots/shopping.png" alt="Shopping List" class="screenshot">
+  <img src="/assets/screenshots/shopping.png" alt="Shopping List" class="screenshot">
   <figcaption class="screenshot-caption">Shopping list with prices and Walmart links</figcaption>
 </figure>
 

@@ -3,7 +3,7 @@
 LiquidTrack enables ESP8266-based smart scales to automatically log beverage consumption.
 
 <figure>
-  <img src="../../assets/screenshots/liquidtrack-full.png" alt="LiquidTrack System" class="screenshot">
+  <img src="/assets/screenshots/liquidtrack-full.png" alt="LiquidTrack System" class="screenshot">
   <figcaption class="screenshot-caption">LiquidTrack device management and event log</figcaption>
 </figure>
 
@@ -109,7 +109,7 @@ Sketch → Include Library → Manage Libraries:
 4. Enter key in firmware config
 
 <figure>
-  <img src="../../assets/screenshots/liquidtrack-key.png" alt="Device Key Generation" class="screenshot">
+  <img src="/assets/screenshots/liquidtrack-key.png" alt="Device Key Generation" class="screenshot">
   <figcaption class="screenshot-caption">Generating a new device API key</figcaption>
 </figure>
 

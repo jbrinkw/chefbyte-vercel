@@ -65,7 +65,7 @@ ChefByte is an all-in-one kitchen management system that unifies:
 ## Screenshots
 
 <figure>
-  <img src="assets/screenshots/dashboard.png" alt="ChefByte Dashboard" class="screenshot">
+  <img src="/assets/screenshots/dashboard.png" alt="ChefByte Dashboard" class="screenshot">
   <figcaption class="screenshot-caption">Dashboard with macro tracking and quick actions</figcaption>
 </figure>
 

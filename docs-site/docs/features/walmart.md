@@ -3,7 +3,7 @@
 The Walmart page manages product matching and price tracking for accurate shopping cost estimation.
 
 <figure>
-  <img src="../../assets/screenshots/walmart.png" alt="Walmart Price Manager" class="screenshot">
+  <img src="/assets/screenshots/walmart.png" alt="Walmart Price Manager" class="screenshot">
   <figcaption class="screenshot-caption">Walmart product matching interface with search results</figcaption>
 </figure>
 

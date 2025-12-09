@@ -3,7 +3,7 @@
 The Home dashboard provides real-time macro tracking with progress bars and goal management.
 
 <figure>
-  <img src="../../assets/screenshots/macros.png" alt="Macro Tracking Dashboard" class="screenshot">
+  <img src="/assets/screenshots/macros.png" alt="Macro Tracking Dashboard" class="screenshot">
   <figcaption class="screenshot-caption">Daily macro progress with calories, protein, carbs, and fats</figcaption>
 </figure>
 
@@ -90,7 +90,7 @@ Quick-log items not in your inventory:
 3. Instantly added to daily total
 
 <figure>
-  <img src="../../assets/screenshots/temp-item.png" alt="Add Temp Item" class="screenshot">
+  <img src="/assets/screenshots/temp-item.png" alt="Add Temp Item" class="screenshot">
   <figcaption class="screenshot-caption">Quick-logging a temp item</figcaption>
 </figure>
 
@@ -166,4 +166,5 @@ Complement macro tracking with preferences:
 | Recipes | Recipe macros flow through meal plan |
 | Products | Product macros used for calculations |
 | Settings | Goals stored in configuration |
+
 
